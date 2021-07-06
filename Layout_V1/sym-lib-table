@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name DMX2PMX-rescue)(type Legacy)(uri ${KIPRJMOD}/DMX2PMX-rescue.lib)(options "")(descr ""))
+)

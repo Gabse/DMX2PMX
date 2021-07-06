@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>C:\Users\gabse\Documents\Projekte\DMX2PMX\Layout\DMX2PMX.sch</source>
+    <date>28/03/2021 22:23:35</date>
+    <tool>Eeschema (5.1.8)-1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>DMX2PMX</title>
+        <company>Gabs'e</company>
+        <rev>2</rev>
+        <date>2020-04-04</date>
+        <source>DMX2PMX.sch</source>
+        <comment number="1" value="CC BY-NC-SA"/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="R1">
+      <value>2K2</value>
+      <footprint>Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal</footprint>
+      <datasheet>https://www.tme.eu/Document/438bd25d6e61fdb2be01c567fad4b7c7/VISHAY_mbxsma.pdf</datasheet>
+      <fields>
+        <field name="MPN">MBA02040C2201FCT00</field>
+        <field name="Manuf">VISHAY</field>
+        <field name="VPN">MBA02040C2201FCT00</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D8522CD</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>485</value>
+      <footprint>Package_DIP:DIP-8_W7.62mm_Socket_LongPads</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/sn75176b.pdf</datasheet>
+      <fields>
+        <field name="MPN">SN75176BP</field>
+        <field name="Manuf">TEXAS INSTRUMENTS </field>
+        <field name="VPN">SN75176</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Interface_UART" part="SP3481EP" description="Industrial 3.3V Low Power Half-Duplex RS-485 Transceiver 10Mbps, DIP8"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CA10F62</tstamp>
+    </comp>
+    <comp ref="U3">
+      <value>6N137</value>
+      <footprint>Package_DIP:DIP-8_W7.62mm_Socket_LongPads</footprint>
+      <datasheet>http://www.vishay.com/docs/84732/6n137.pdf</datasheet>
+      <fields>
+        <field name="MPN">6N137</field>
+        <field name="Manuf">VISHAY</field>
+        <field name="VPN">6N137-VIS</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Isolator" part="6N136S" description="High Speed Optocoupler, TTL Compatible, CTR 18%, SMDIP8"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CC048D1</tstamp>
+    </comp>
+    <comp ref="U4">
+      <value>REE-0505S</value>
+      <footprint>Foodprint:RECOM-REE-0505S</footprint>
+      <datasheet>https://recom-power.com/pdf/Econoline/REE.pdf</datasheet>
+      <fields>
+        <field name="MPN">REE-0505S</field>
+        <field name="Manuf">RECOM</field>
+        <field name="VPN">REE-0505S</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="ree-0505s" part="REE-0505S-DMX2PMX-rescue-DMX2SGM-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CA11F22</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>390R</value>
+      <footprint>Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal</footprint>
+      <datasheet>https://www.tme.eu/Document/438bd25d6e61fdb2be01c567fad4b7c7/VISHAY_mbxsma.pdf</datasheet>
+      <fields>
+        <field name="MPN">MBA02040C3900FC100 </field>
+        <field name="Manuf">VISHAY</field>
+        <field name="VPN">MBA02040C3900FC100 </field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5DB9C820</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>LED</value>
+      <footprint>LED_THT:LED_D5.0mm</footprint>
+      <datasheet>https://www.vishay.com/docs/83012/tlhg540.pdf</datasheet>
+      <fields>
+        <field name="MPN">TLHY5400-AS12Z</field>
+        <field name="Manuf">VISHAY</field>
+        <field name="VPN">TLHY5400-AS12Z</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5DB8941A</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>22p</value>
+      <footprint>Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <datasheet>https://content.kemet.com/datasheets/KEM_C1049_GOLDMAX_C0G.pdf</datasheet>
+      <fields>
+        <field name="MPN">C315C229D2G5TA</field>
+        <field name="Manuf">KEMET</field>
+        <field name="VPN">C315C229D2G5TA</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D7BD66B</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>22p</value>
+      <footprint>Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <datasheet>https://content.kemet.com/datasheets/KEM_C1049_GOLDMAX_C0G.pdf</datasheet>
+      <fields>
+        <field name="MPN">C315C229D2G5TA</field>
+        <field name="Manuf">KEMET</field>
+        <field name="VPN">C315C229D2G5TA</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D7B6F39</tstamp>
+    </comp>
+    <comp ref="Y1">
+      <value>12MHz</value>
+      <footprint>Crystal:Crystal_HC49-4H_Vertical</footprint>
+      <datasheet>https://www.iqdfrequencyproducts.com/products/pn/LFXTAL003215Bulk.pdf</datasheet>
+      <fields>
+        <field name="MPN">LF XTAL003215</field>
+        <field name="Manuf">IQD</field>
+        <field name="VPN">12.00M-HC49SR</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="Crystal" description="Two pin crystal"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D7B6A3B</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>100n</value>
+      <footprint>Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <datasheet>https://content.kemet.com/datasheets/KEM_C1049_GOLDMAX_C0G.pdf</datasheet>
+      <fields>
+        <field name="MPN">C315C103K5R5TA</field>
+        <field name="Manuf">KEMET</field>
+        <field name="VPN">C315C103K5R5TA</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D747A6E</tstamp>
+    </comp>
+    <comp ref="U1">
+      <value>ATtiny1634</value>
+      <footprint>Housings_SOIC:SOIC-20W_7.5x12.8mm_Pitch1.27mm</footprint>
+      <datasheet>https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-8303-8-bit-AVR-Microcontroller-tinyAVR-ATtiny1634_Datasheet.pdf</datasheet>
+      <fields>
+        <field name="MPN">ATTINY1634-SU</field>
+        <field name="Manuf">MICROCHIP</field>
+        <field name="VPN">ATTINY1634-SU</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="MCU_Microchip_ATtiny" part="ATtiny1634-SU" description="12MHz, 16kB Flash, 1kB SRAM, 256B EEPROM, ADC, ACI, debugWIRE, SOIC-20"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D73D7D9</tstamp>
+    </comp>
+    <comp ref="U5">
+      <value>7805</value>
+      <footprint>Package_TO_SOT_THT:TO-220-3_Vertical</footprint>
+      <datasheet>https://www.st.com/resource/en/datasheet/l78.pdf</datasheet>
+      <fields>
+        <field name="MPN">L7805ABP</field>
+        <field name="Manuf">STMicroelectronics</field>
+        <field name="VPN">L7805ABP</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Regulator_Linear" part="L7805" description="Positive 1.5A 35V Linear Regulator, Fixed Output 5V, TO-220/TO-263/TO-252"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D74B5EC</tstamp>
+    </comp>
+    <comp ref="C6">
+      <value>100n</value>
+      <footprint>Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <datasheet>https://content.kemet.com/datasheets/KEM_C1049_GOLDMAX_C0G.pdf</datasheet>
+      <fields>
+        <field name="MPN">C315C103K5R5TA</field>
+        <field name="Manuf">KEMET</field>
+        <field name="VPN">C315C103K5R5TA</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D7EEC62</tstamp>
+    </comp>
+    <comp ref="C5">
+      <value>1µ</value>
+      <footprint>Capacitor_THT:CP_Radial_D6.3mm_P2.50mm</footprint>
+      <datasheet>https://www.nichicon.co.jp/english/products/pdfs/e-ups.pdf</datasheet>
+      <fields>
+        <field name="MPN">UPS2D010MED</field>
+        <field name="Manuf">NICHICON</field>
+        <field name="VPN">UPS2D010MED</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="CP" description="Polarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D7EF42E</tstamp>
+    </comp>
+    <comp ref="C9">
+      <value>100n</value>
+      <footprint>Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <datasheet>https://content.kemet.com/datasheets/KEM_C1049_GOLDMAX_C0G.pdf</datasheet>
+      <fields>
+        <field name="MPN">C315C103K5R5TA</field>
+        <field name="Manuf">KEMET</field>
+        <field name="VPN">C315C103K5R5TA</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D7F92E6</tstamp>
+    </comp>
+    <comp ref="C8">
+      <value>100n</value>
+      <footprint>Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <datasheet>https://content.kemet.com/datasheets/KEM_C1049_GOLDMAX_C0G.pdf</datasheet>
+      <fields>
+        <field name="MPN">C315C103K5R5TA</field>
+        <field name="Manuf">KEMET</field>
+        <field name="VPN">C315C103K5R5TA</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D74823A</tstamp>
+    </comp>
+    <comp ref="J2">
+      <value>Conn_01x03</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical</footprint>
+      <datasheet>https://www.molex.com/webdocs/datasheets/pdf/en-us/0901200763_PCB_HEADERS.pdf</datasheet>
+      <fields>
+        <field name="MPN">90120-0763</field>
+        <field name="Manuf">MOLEX</field>
+        <field name="VPN">MX-90120-0763</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Connector_Generic" part="Conn_01x03" description="Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8E5234</tstamp>
+    </comp>
+    <comp ref="J3">
+      <value>Conn_01x03</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical</footprint>
+      <datasheet>https://www.molex.com/webdocs/datasheets/pdf/en-us/0901200763_PCB_HEADERS.pdf</datasheet>
+      <fields>
+        <field name="MPN">90120-0763</field>
+        <field name="Manuf">MOLEX</field>
+        <field name="VPN">MX-90120-0763</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Connector_Generic" part="Conn_01x03" description="Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8E9391</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>100n</value>
+      <footprint>Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <datasheet>https://content.kemet.com/datasheets/KEM_C1049_GOLDMAX_C0G.pdf</datasheet>
+      <fields>
+        <field name="MPN">C315C103K5R5TA</field>
+        <field name="Manuf">KEMET</field>
+        <field name="VPN">C315C103K5R5TA</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8F22FD</tstamp>
+    </comp>
+    <comp ref="SW1">
+      <value>BD09AV</value>
+      <footprint>Foodprint:BD09AV</footprint>
+      <datasheet>https://www.tme.eu/Document/c61a0c6c0d86858ea1d40377c71c4c58/BDseries.pdf</datasheet>
+      <fields>
+        <field name="MPN">BD09AV</field>
+        <field name="Manuf">C&amp;K</field>
+        <field name="VPN">BD09AV</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Switch" part="SW_DIP_x09" description="9x DIP Switch, Single Pole Single Throw (SPST) switch, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D815EDF</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>390R</value>
+      <footprint>Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal</footprint>
+      <datasheet>https://www.tme.eu/Document/438bd25d6e61fdb2be01c567fad4b7c7/VISHAY_mbxsma.pdf</datasheet>
+      <fields>
+        <field name="MPN">MBA02040C3900FC100 </field>
+        <field name="Manuf">VISHAY</field>
+        <field name="VPN">MBA02040C3900FC100 </field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CA1216D</tstamp>
+    </comp>
+    <comp ref="R5">
+      <value>390R</value>
+      <footprint>Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal</footprint>
+      <datasheet>https://www.tme.eu/Document/438bd25d6e61fdb2be01c567fad4b7c7/VISHAY_mbxsma.pdf</datasheet>
+      <fields>
+        <field name="MPN">MBA02040C3900FC100 </field>
+        <field name="Manuf">VISHAY</field>
+        <field name="VPN">MBA02040C3900FC100 </field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E88251A</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>1N4007</value>
+      <footprint>Diode_THT:D_DO-15_P12.70mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/88503/1n4001.pdf</datasheet>
+      <fields>
+        <field name="MPN">1N4007-E3/54</field>
+        <field name="Manuf">VISHAY</field>
+        <field name="VPN">1N4007-E3/54</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="D" description="Diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5DD209A4</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>390R</value>
+      <footprint>Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal</footprint>
+      <datasheet>https://www.tme.eu/Document/438bd25d6e61fdb2be01c567fad4b7c7/VISHAY_mbxsma.pdf</datasheet>
+      <fields>
+        <field name="MPN">MBA02040C3900FC100 </field>
+        <field name="Manuf">VISHAY</field>
+        <field name="VPN">MBA02040C3900FC100 </field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8A005E</tstamp>
+    </comp>
+    <comp ref="J4">
+      <value>Conn_01x02</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical</footprint>
+      <datasheet>https://www.molex.com/webdocs/datasheets/pdf/en-us/0901200762_PCB_HEADERS.pdf</datasheet>
+      <fields>
+        <field name="MPN">90120-0762</field>
+        <field name="Manuf">MOLEX</field>
+        <field name="VPN">MX-90120-0762</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Connector_Generic" part="Conn_01x02" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8FD1ED</tstamp>
+    </comp>
+    <comp ref="J5">
+      <value>Conn_01x02</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical</footprint>
+      <datasheet>https://www.molex.com/webdocs/datasheets/pdf/en-us/0901200762_PCB_HEADERS.pdf</datasheet>
+      <fields>
+        <field name="MPN">90120-0762</field>
+        <field name="Manuf">MOLEX</field>
+        <field name="VPN">MX-90120-0762</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Connector_Generic" part="Conn_01x02" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8FDF49</tstamp>
+    </comp>
+    <comp ref="J6">
+      <value>Conn_01x02</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical</footprint>
+      <datasheet>https://www.molex.com/webdocs/datasheets/pdf/en-us/0901200762_PCB_HEADERS.pdf</datasheet>
+      <fields>
+        <field name="MPN">90120-0762</field>
+        <field name="Manuf">MOLEX</field>
+        <field name="VPN">MX-90120-0762</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Connector_Generic" part="Conn_01x02" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8FE7D7</tstamp>
+    </comp>
+    <comp ref="U6">
+      <value>232</value>
+      <footprint>Package_DIP:DIP-16_W7.62mm_Socket_LongPads</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/max232.pdf</datasheet>
+      <fields>
+        <field name="MPN">MAX232N</field>
+        <field name="Manuf">TEXAS INSTRUMENTS </field>
+        <field name="VPN">MAX232N</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Interface_UART" part="MAX232" description="Dual RS232 driver/receiver, 5V supply, 120kb/s, 0C-70C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8AA1A8</tstamp>
+    </comp>
+    <comp ref="J1">
+      <value>AVR-ISP-6</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical</footprint>
+      <datasheet>https://cdn.amphenol-icc.com/media/wysiwyg/files/drawing/67996.pdf</datasheet>
+      <fields>
+        <field name="MPN">67996-206HLF</field>
+        <field name="Manuf">AMPHENOL</field>
+        <field name="VPN">67996-206HLF</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Connector" part="AVR-ISP-6" description="Atmel 6-pin ISP connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D7D64E6</tstamp>
+    </comp>
+    <comp ref="C12">
+      <value>1µ</value>
+      <footprint>Capacitor_THT:CP_Radial_D6.3mm_P2.50mm</footprint>
+      <datasheet>https://www.nichicon.co.jp/english/products/pdfs/e-ups.pdf</datasheet>
+      <fields>
+        <field name="MPN">UPS2D010MED</field>
+        <field name="Manuf">NICHICON</field>
+        <field name="VPN">UPS2D010MED</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="CP" description="Polarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E97C056</tstamp>
+    </comp>
+    <comp ref="C13">
+      <value>1µ</value>
+      <footprint>Capacitor_THT:CP_Radial_D6.3mm_P2.50mm</footprint>
+      <datasheet>https://www.nichicon.co.jp/english/products/pdfs/e-ups.pdf</datasheet>
+      <fields>
+        <field name="MPN">UPS2D010MED</field>
+        <field name="Manuf">NICHICON</field>
+        <field name="VPN">UPS2D010MED</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="CP" description="Polarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E98C6C2</tstamp>
+    </comp>
+    <comp ref="C11">
+      <value>1µ</value>
+      <footprint>Capacitor_THT:CP_Radial_D6.3mm_P2.50mm</footprint>
+      <datasheet>https://www.nichicon.co.jp/english/products/pdfs/e-ups.pdf</datasheet>
+      <fields>
+        <field name="MPN">UPS2D010MED</field>
+        <field name="Manuf">NICHICON</field>
+        <field name="VPN">UPS2D010MED</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="CP" description="Polarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E9BCDD6</tstamp>
+    </comp>
+    <comp ref="C7">
+      <value>1µ</value>
+      <footprint>Capacitor_THT:CP_Radial_D6.3mm_P2.50mm</footprint>
+      <datasheet>https://www.nichicon.co.jp/english/products/pdfs/e-ups.pdf</datasheet>
+      <fields>
+        <field name="MPN">UPS2D010MED</field>
+        <field name="Manuf">NICHICON</field>
+        <field name="VPN">UPS2D010MED</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="CP" description="Polarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E9722D9</tstamp>
+    </comp>
+    <comp ref="C10">
+      <value>1µ</value>
+      <footprint>Capacitor_THT:CP_Radial_D6.3mm_P2.50mm</footprint>
+      <datasheet>https://www.nichicon.co.jp/english/products/pdfs/e-ups.pdf</datasheet>
+      <fields>
+        <field name="MPN">UPS2D010MED</field>
+        <field name="Manuf">NICHICON</field>
+        <field name="VPN">UPS2D010MED</field>
+        <field name="Vendor">TME</field>
+      </fields>
+      <libsource lib="Device" part="CP" description="Polarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D7FB785</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Connector" part="AVR-ISP-6">
+      <description>Atmel 6-pin ISP connector</description>
+      <docs> ~</docs>
+      <footprints>
+        <fp>IDC?Header*2x03*</fp>
+        <fp>Pin?Header*2x03*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">AVR-ISP-6</field>
+      </fields>
+      <pins>
+        <pin num="1" name="MISO" type="passive"/>
+        <pin num="2" name="VCC" type="passive"/>
+        <pin num="3" name="SCK" type="passive"/>
+        <pin num="4" name="MOSI" type="passive"/>
+        <pin num="5" name="~RST" type="passive"/>
+        <pin num="6" name="GND" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_Generic" part="Conn_01x02">
+      <description>Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x02</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_Generic" part="Conn_01x03">
+      <description>Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x03</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C">
+      <description>Unpolarized capacitor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="CP">
+      <description>Polarized capacitor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>CP_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">CP</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="Crystal">
+      <description>Two pin crystal</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Crystal*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Y</field>
+        <field name="Value">Crystal</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="D">
+      <description>Diode</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TO-???*</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="LED">
+      <description>Light emitting diode</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>LED*</fp>
+        <fp>LED_SMD:*</fp>
+        <fp>LED_THT:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Interface_UART" part="MAX232">
+      <aliases>
+        <alias>MAX232I</alias>
+        <alias>MAX202</alias>
+        <alias>ADM232A</alias>
+        <alias>MAX3232</alias>
+        <alias>ICL3232</alias>
+      </aliases>
+      <description>Dual RS232 driver/receiver, 5V supply, 120kb/s, 0C-70C</description>
+      <docs>http://www.ti.com/lit/ds/symlink/max232.pdf</docs>
+      <footprints>
+        <fp>SOIC*P1.27mm*</fp>
+        <fp>DIP*W7.62mm*</fp>
+        <fp>TSSOP*4.4x5mm*P0.65mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">MAX232</field>
+      </fields>
+      <pins>
+        <pin num="1" name="C1+" type="passive"/>
+        <pin num="2" name="VS+" type="power_out"/>
+        <pin num="3" name="C1-" type="passive"/>
+        <pin num="4" name="C2+" type="passive"/>
+        <pin num="5" name="C2-" type="passive"/>
+        <pin num="6" name="VS-" type="power_out"/>
+        <pin num="7" name="T2OUT" type="output"/>
+        <pin num="8" name="R2IN" type="input"/>
+        <pin num="9" name="R2OUT" type="output"/>
+        <pin num="10" name="T2IN" type="input"/>
+        <pin num="11" name="T1IN" type="input"/>
+        <pin num="12" name="R1OUT" type="output"/>
+        <pin num="13" name="R1IN" type="input"/>
+        <pin num="14" name="T1OUT" type="output"/>
+        <pin num="15" name="GND" type="power_in"/>
+        <pin num="16" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Interface_UART" part="SP3481CP">
+      <aliases>
+        <alias>SP3481EP</alias>
+        <alias>SP3485CP</alias>
+        <alias>SP3485EP</alias>
+      </aliases>
+      <description>3.3V Low Power Half-Duplex RS-485 Transceiver 10Mbps, DIP8</description>
+      <docs>http://www.icbase.com/pdf/SPX/SPX00480106.pdf</docs>
+      <footprints>
+        <fp>DIP*W7.62mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">SP3481CP</field>
+        <field name="Footprint">Package_DIP:DIP-8_W7.62mm</field>
+      </fields>
+      <pins>
+        <pin num="1" name="RO" type="output"/>
+        <pin num="2" name="~RE~" type="input"/>
+        <pin num="3" name="DE" type="input"/>
+        <pin num="4" name="DI" type="input"/>
+        <pin num="5" name="GND" type="power_in"/>
+        <pin num="6" name="A" type="BiDi"/>
+        <pin num="7" name="B" type="BiDi"/>
+        <pin num="8" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Isolator" part="6N135S">
+      <aliases>
+        <alias>6N136S</alias>
+      </aliases>
+      <description>High Speed Optocoupler, TTL Compatible, CTR 18%, SMDIP8</description>
+      <docs>https://optoelectronics.liteon.com/upload/download/DS70-2008-0032/6N135-L%206N136-L%20series.pdf</docs>
+      <footprints>
+        <fp>SMDIP*W9.53mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">6N135S</field>
+        <field name="Footprint">Package_DIP:SMDIP-8_W9.53mm</field>
+      </fields>
+      <pins>
+        <pin num="1" name="NC" type="NotConnected"/>
+        <pin num="2" name="~" type="passive"/>
+        <pin num="3" name="~" type="passive"/>
+        <pin num="4" name="NC" type="NotConnected"/>
+        <pin num="5" name="~" type="passive"/>
+        <pin num="6" name="~" type="passive"/>
+        <pin num="7" name="~" type="passive"/>
+        <pin num="8" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="MCU_Microchip_ATtiny" part="ATtiny1634-SU">
+      <description>12MHz, 16kB Flash, 1kB SRAM, 256B EEPROM, ADC, ACI, debugWIRE, SOIC-20</description>
+      <docs>http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-8303-8-bit-AVR-Microcontroller-tinyAVR-ATtiny1634_Datasheet.pdf</docs>
+      <footprints>
+        <fp>SOIC*7.5x12.8mm*P1.27mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">ATtiny1634-SU</field>
+        <field name="Footprint">Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm</field>
+      </fields>
+      <pins>
+        <pin num="1" name="PB0" type="BiDi"/>
+        <pin num="2" name="PA7" type="BiDi"/>
+        <pin num="3" name="PA6" type="BiDi"/>
+        <pin num="4" name="PA5" type="BiDi"/>
+        <pin num="5" name="PA4" type="BiDi"/>
+        <pin num="6" name="PA3" type="BiDi"/>
+        <pin num="7" name="PA2" type="BiDi"/>
+        <pin num="8" name="PA1" type="BiDi"/>
+        <pin num="9" name="AREF/PA0" type="BiDi"/>
+        <pin num="10" name="GND" type="power_in"/>
+        <pin num="11" name="VCC" type="power_in"/>
+        <pin num="12" name="XTAL1/PC5" type="BiDi"/>
+        <pin num="13" name="XTAL2/PC4" type="BiDi"/>
+        <pin num="14" name="~RESET~/PC3" type="BiDi"/>
+        <pin num="15" name="PC2" type="BiDi"/>
+        <pin num="16" name="PC1" type="BiDi"/>
+        <pin num="17" name="PC0" type="BiDi"/>
+        <pin num="18" name="PB3" type="BiDi"/>
+        <pin num="19" name="PB2" type="BiDi"/>
+        <pin num="20" name="PB1" type="BiDi"/>
+      </pins>
+    </libpart>
+    <libpart lib="Regulator_Linear" part="L7805">
+      <aliases>
+        <alias>L7806</alias>
+        <alias>L7808</alias>
+        <alias>L7885</alias>
+        <alias>L7809</alias>
+        <alias>L7812</alias>
+        <alias>L7815</alias>
+        <alias>L7818</alias>
+        <alias>L7824</alias>
+      </aliases>
+      <description>Positive 1.5A 35V Linear Regulator, Fixed Output 5V, TO-220/TO-263/TO-252</description>
+      <docs>http://www.st.com/content/ccc/resource/technical/document/datasheet/41/4f/b3/b0/12/d4/47/88/CD00000444.pdf/files/CD00000444.pdf/jcr:content/translations/en.CD00000444.pdf</docs>
+      <footprints>
+        <fp>TO?252*</fp>
+        <fp>TO?263*</fp>
+        <fp>TO?220*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">L7805</field>
+      </fields>
+      <pins>
+        <pin num="1" name="IN" type="power_in"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="OUT" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="Switch" part="SW_DIP_x09">
+      <description>9x DIP Switch, Single Pole Single Throw (SPST) switch, small symbol</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>SW?DIP?x9*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">SW_DIP_x09</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+        <pin num="3" name="~" type="passive"/>
+        <pin num="4" name="~" type="passive"/>
+        <pin num="5" name="~" type="passive"/>
+        <pin num="6" name="~" type="passive"/>
+        <pin num="7" name="~" type="passive"/>
+        <pin num="8" name="~" type="passive"/>
+        <pin num="9" name="~" type="passive"/>
+        <pin num="10" name="~" type="passive"/>
+        <pin num="11" name="~" type="passive"/>
+        <pin num="12" name="~" type="passive"/>
+        <pin num="13" name="~" type="passive"/>
+        <pin num="14" name="~" type="passive"/>
+        <pin num="15" name="~" type="passive"/>
+        <pin num="16" name="~" type="passive"/>
+        <pin num="17" name="~" type="passive"/>
+        <pin num="18" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="ree-0505s" part="REE-0505S-DMX2PMX-rescue-DMX2SGM-rescue">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">REE-0505S-DMX2PMX-rescue-DMX2SGM-rescue</field>
+        <field name="Footprint">manuf:RECOM-REE-0505S</field>
+        <field name="Datasheet">https://www.recom-power.com/pdf/Econoline/REE.pdf</field>
+        <field name="Manuf">Recom</field>
+        <field name="BOM">Recom REE-0505S</field>
+        <field name="MPN">REE-0505S</field>
+      </fields>
+      <pins>
+        <pin num="1" name="+IN" type="power_in"/>
+        <pin num="2" name="-IN" type="power_in"/>
+        <pin num="4" name="-OUT" type="power_in"/>
+        <pin num="6" name="+OUT" type="power_out"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Connector">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Connector.lib</uri>
+    </library>
+    <library logical="Connector_Generic">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Connector_Generic.lib</uri>
+    </library>
+    <library logical="Device">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Device.lib</uri>
+    </library>
+    <library logical="Interface_UART">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Interface_UART.lib</uri>
+    </library>
+    <library logical="Isolator">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Isolator.lib</uri>
+    </library>
+    <library logical="MCU_Microchip_ATtiny">
+      <uri>C:\Program Files\KiCad\share\kicad\library/MCU_Microchip_ATtiny.lib</uri>
+    </library>
+    <library logical="Regulator_Linear">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Regulator_Linear.lib</uri>
+    </library>
+    <library logical="Switch">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Switch.lib</uri>
+    </library>
+    <library logical="ree-0505s">
+      <uri>C:\Users\gabse\Documents\Projekte\DMX2PMX\Layout/ree-0505s.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="ICSP_MISO">
+      <node ref="R5" pin="2"/>
+      <node ref="J1" pin="1"/>
+      <node ref="U1" pin="19"/>
+    </net>
+    <net code="2" name="Net-(J2-Pad3)">
+      <node ref="J3" pin="3"/>
+      <node ref="J2" pin="3"/>
+      <node ref="U2" pin="6"/>
+    </net>
+    <net code="3" name="Net-(J2-Pad2)">
+      <node ref="J2" pin="2"/>
+      <node ref="J3" pin="2"/>
+      <node ref="U2" pin="7"/>
+    </net>
+    <net code="4" name="+5V">
+      <node ref="U3" pin="2"/>
+      <node ref="U4" pin="6"/>
+      <node ref="U2" pin="8"/>
+      <node ref="C3" pin="1"/>
+    </net>
+    <net code="5" name="PMX_OUT_1">
+      <node ref="R4" pin="2"/>
+      <node ref="U1" pin="1"/>
+    </net>
+    <net code="6" name="+VSW">
+      <node ref="U5" pin="1"/>
+      <node ref="C6" pin="1"/>
+      <node ref="C5" pin="1"/>
+      <node ref="D2" pin="1"/>
+    </net>
+    <net code="7" name="Net-(D2-Pad2)">
+      <node ref="J4" pin="1"/>
+      <node ref="D2" pin="2"/>
+    </net>
+    <net code="8" name="DMX">
+      <node ref="U1" pin="20"/>
+      <node ref="J1" pin="4"/>
+      <node ref="U3" pin="6"/>
+    </net>
+    <net code="9" name="GNDD">
+      <node ref="J6" pin="2"/>
+      <node ref="J5" pin="2"/>
+      <node ref="SW1" pin="14"/>
+      <node ref="U5" pin="2"/>
+      <node ref="SW1" pin="11"/>
+      <node ref="SW1" pin="10"/>
+      <node ref="C12" pin="2"/>
+      <node ref="C13" pin="1"/>
+      <node ref="SW1" pin="15"/>
+      <node ref="C8" pin="2"/>
+      <node ref="C9" pin="2"/>
+      <node ref="C5" pin="2"/>
+      <node ref="C6" pin="2"/>
+      <node ref="C10" pin="2"/>
+      <node ref="J4" pin="2"/>
+      <node ref="U3" pin="5"/>
+      <node ref="U1" pin="10"/>
+      <node ref="C1" pin="2"/>
+      <node ref="C2" pin="1"/>
+      <node ref="C4" pin="2"/>
+      <node ref="U6" pin="8"/>
+      <node ref="U4" pin="2"/>
+      <node ref="SW1" pin="18"/>
+      <node ref="SW1" pin="17"/>
+      <node ref="U6" pin="15"/>
+      <node ref="U6" pin="13"/>
+      <node ref="SW1" pin="16"/>
+      <node ref="D1" pin="2"/>
+      <node ref="SW1" pin="12"/>
+      <node ref="J1" pin="6"/>
+      <node ref="SW1" pin="13"/>
+    </net>
+    <net code="10" name="Net-(D1-Pad1)">
+      <node ref="D1" pin="1"/>
+      <node ref="R2" pin="1"/>
+    </net>
+    <net code="11" name="GND">
+      <node ref="U4" pin="4"/>
+      <node ref="J3" pin="1"/>
+      <node ref="U2" pin="2"/>
+      <node ref="U2" pin="3"/>
+      <node ref="U2" pin="4"/>
+      <node ref="U2" pin="5"/>
+      <node ref="C3" pin="2"/>
+      <node ref="J2" pin="1"/>
+    </net>
+    <net code="12" name="Net-(U3-Pad7)">
+      <node ref="U3" pin="7"/>
+    </net>
+    <net code="13" name="Net-(U3-Pad4)">
+      <node ref="U3" pin="4"/>
+    </net>
+    <net code="14" name="Net-(R3-Pad1)">
+      <node ref="R3" pin="1"/>
+      <node ref="U3" pin="3"/>
+    </net>
+    <net code="15" name="Net-(U3-Pad1)">
+      <node ref="U3" pin="1"/>
+    </net>
+    <net code="16" name="Net-(R3-Pad2)">
+      <node ref="U2" pin="1"/>
+      <node ref="R3" pin="2"/>
+    </net>
+    <net code="17" name="Net-(R2-Pad2)">
+      <node ref="R2" pin="2"/>
+      <node ref="U1" pin="15"/>
+    </net>
+    <net code="18" name="RESET">
+      <node ref="R1" pin="1"/>
+      <node ref="U1" pin="14"/>
+      <node ref="J1" pin="5"/>
+    </net>
+    <net code="19" name="Net-(C4-Pad1)">
+      <node ref="U1" pin="13"/>
+      <node ref="C4" pin="1"/>
+      <node ref="Y1" pin="1"/>
+    </net>
+    <net code="20" name="Net-(C2-Pad2)">
+      <node ref="U1" pin="12"/>
+      <node ref="C2" pin="2"/>
+      <node ref="Y1" pin="2"/>
+    </net>
+    <net code="21" name="Net-(C7-Pad1)">
+      <node ref="C7" pin="1"/>
+      <node ref="U6" pin="1"/>
+    </net>
+    <net code="22" name="Net-(C11-Pad2)">
+      <node ref="U6" pin="5"/>
+      <node ref="C11" pin="2"/>
+    </net>
+    <net code="23" name="Net-(C11-Pad1)">
+      <node ref="C11" pin="1"/>
+      <node ref="U6" pin="4"/>
+    </net>
+    <net code="24" name="Net-(C7-Pad2)">
+      <node ref="C7" pin="2"/>
+      <node ref="U6" pin="3"/>
+    </net>
+    <net code="25" name="Net-(C12-Pad1)">
+      <node ref="U6" pin="2"/>
+      <node ref="C12" pin="1"/>
+    </net>
+    <net code="26" name="Net-(U6-Pad12)">
+      <node ref="U6" pin="12"/>
+    </net>
+    <net code="27" name="Net-(R4-Pad1)">
+      <node ref="R4" pin="1"/>
+      <node ref="U6" pin="11"/>
+    </net>
+    <net code="28" name="Net-(R5-Pad1)">
+      <node ref="U6" pin="10"/>
+      <node ref="R5" pin="1"/>
+    </net>
+    <net code="29" name="Net-(U6-Pad9)">
+      <node ref="U6" pin="9"/>
+    </net>
+    <net code="30" name="Net-(J6-Pad1)">
+      <node ref="J6" pin="1"/>
+      <node ref="U6" pin="7"/>
+    </net>
+    <net code="31" name="Net-(J5-Pad1)">
+      <node ref="U6" pin="14"/>
+      <node ref="J5" pin="1"/>
+    </net>
+    <net code="32" name="Net-(C13-Pad2)">
+      <node ref="U6" pin="6"/>
+      <node ref="C13" pin="2"/>
+    </net>
+    <net code="33" name="+5VD">
+      <node ref="U3" pin="8"/>
+      <node ref="C9" pin="1"/>
+      <node ref="U5" pin="3"/>
+      <node ref="C8" pin="1"/>
+      <node ref="U4" pin="1"/>
+      <node ref="U6" pin="16"/>
+      <node ref="C10" pin="1"/>
+      <node ref="R1" pin="2"/>
+      <node ref="C1" pin="1"/>
+      <node ref="J1" pin="2"/>
+      <node ref="U1" pin="11"/>
+    </net>
+    <net code="34" name="ICSP_SCL">
+      <node ref="J1" pin="3"/>
+      <node ref="U1" pin="17"/>
+      <node ref="U1" pin="16"/>
+    </net>
+    <net code="35" name="/ADDRESS_1">
+      <node ref="SW1" pin="2"/>
+      <node ref="U1" pin="8"/>
+    </net>
+    <net code="36" name="/ADDRESS_2">
+      <node ref="U1" pin="7"/>
+      <node ref="SW1" pin="3"/>
+    </net>
+    <net code="37" name="/ADDRESS_3">
+      <node ref="SW1" pin="4"/>
+      <node ref="U1" pin="6"/>
+    </net>
+    <net code="38" name="/ADDRESS_4">
+      <node ref="SW1" pin="5"/>
+      <node ref="U1" pin="5"/>
+    </net>
+    <net code="39" name="/ADDRESS_5">
+      <node ref="SW1" pin="6"/>
+      <node ref="U1" pin="4"/>
+    </net>
+    <net code="40" name="/ADDRESS_6">
+      <node ref="U1" pin="3"/>
+      <node ref="SW1" pin="7"/>
+    </net>
+    <net code="41" name="/ADDRESS_7">
+      <node ref="U1" pin="2"/>
+      <node ref="SW1" pin="8"/>
+    </net>
+    <net code="42" name="/ADDRESS_8">
+      <node ref="SW1" pin="9"/>
+      <node ref="U1" pin="18"/>
+    </net>
+    <net code="44" name="/ADDRESS_0">
+      <node ref="SW1" pin="1"/>
+      <node ref="U1" pin="9"/>
+    </net>
+  </nets>
+</export>
