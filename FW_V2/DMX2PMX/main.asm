@@ -14,7 +14,7 @@
 //***********************************************************************************************                                                                                
 //                                                                                    
 //								   DMX512 to Dual PMX Converter                                                                                   
-//										   Version: 1.0
+//										   Version: 2.0
 //									  Build date: 05.04.2020
 //										  Author: Gabs'e
 //										File: main.asm
@@ -42,6 +42,7 @@
 //	Changelog:	
 //				V0.0..........Fork from DMX2SGM
 //				V1.0..........First Release
+//				V2.0..........Fix MCU randomly rebooting, Fix DMX Address off-by-one
 //
 //
 //***********************************************************************************************
@@ -238,12 +239,12 @@ clr_ram:
 	
 	LDI TEMP,	1<<WDE							// Enable Watchdog Timer @ 16ms
 	OUT WDTCSR,	TEMP							// Enable Watchdog Timer @ 16ms
+	CBI DDRB,	PB3								// Set pin PB3 to input
+	SBI PUEB,	PB3								// Enable pin PB3 pullup
 	LDI TEMP,	0x00							// Set PortA to input 
 	OUT DDRA,	TEMP							// Set PortA to input 
 	LDI TEMP,	0xFF							// Enable PortA pullup
 	OUT PUEA,	TEMP							// Enable PortA pullup
-	CBI DDRB,	PB3								// Set pin PB3 to input
-	SBI PUEB,	PB3								// Enable pin PB3 pullup
 	SER TEMP									// Load TEMP with value for XOR
 	IN DMX_ADDRESS_L,	PINB					// Read DMX address bit 8 from DIP switch
 	EOR DMX_ADDRESS_L,	TEMP					// Invert register
@@ -462,6 +463,7 @@ DMX_INTERRUPT:
 		CPSE DMX_DATA,	DMX_BYTE_H				// Check startbit
 			RJMP SKIPNEXT							// Jump to SKIPNEXT if startbit is not 0
 		CBR FLAGS,	1<<DRSB						// Clear DMX Read Start Byte flag
+		INC DMX_BYTE_L							// Increment DMXBYTE L by 1
 		OUT SREG,	S_SREG						// Restore SREG
 		RETI									// Exit interrupt
 		
@@ -611,7 +613,7 @@ PMX2_INTERRUPT:
 //******************************Programm End *******************************
 
 .org FLASHEND-9
-.db "DMX2PMX V1 by Gabs'e"
+.db "DMX2PMX V2 by Gabs'e"
 
 .if NUM_CH > 120 | NUM_CH < 1
 .error "Maximal 120 Cannels per Output Allowed!"

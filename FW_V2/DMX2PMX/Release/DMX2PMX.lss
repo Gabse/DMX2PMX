@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  C:\Users\gabse\Documents\Projekte\DMX2PMX\FW_V2\DMX2PMX\main.asm Tue Jul 06 22:10:16 2021
+AVRASM ver. 2.2.7  C:\Users\gabse\Documents\Projekte\DMX2PMX\FW_V2\DMX2PMX\main.asm Sun Jul 24 18:47:14 2022
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\avrasm\inc\tn1634def.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\avrasm\inc\tn1634def.inc'
@@ -1035,7 +1035,7 @@ AVRASM ver. 2.2.7  C:\Users\gabse\Documents\Projekte\DMX2PMX\FW_V2\DMX2PMX\main.
                                  //***********************************************************************************************                                                                                
                                  //                                                                                    
                                  //								   DMX512 to Dual PMX Converter                                                                                   
-                                 //										   Version: 1.0
+                                 //										   Version: 2.0
                                  //									  Build date: 05.04.2020
                                  //										  Author: Gabs'e
                                  //										File: main.asm
@@ -1063,6 +1063,7 @@ AVRASM ver. 2.2.7  C:\Users\gabse\Documents\Projekte\DMX2PMX\FW_V2\DMX2PMX\main.
                                  //	Changelog:	
                                  //				V0.0..........Fork from DMX2SGM
                                  //				V1.0..........First Release
+                                 //				V2.0..........Fix MCU randomly rebooting, Fix DMX Address off-by-one
                                  //
                                  //
                                  //***********************************************************************************************
@@ -1133,13 +1134,13 @@ AVRASM ver. 2.2.7  C:\Users\gabse\Documents\Projekte\DMX2PMX\FW_V2\DMX2PMX\main.
 00000e c0e3                      	RJMP TC1CMA									// Jump to TC1CMA on OC1Aaddr interrupt
                                  
                                  .org UDRE0addr
-000022 c101                      	RJMP PMX1_INTERRUPT							// Jump to PMX1_INTERRUPT on UDRE0addr interrupt
+000022 c102                      	RJMP PMX1_INTERRUPT							// Jump to PMX1_INTERRUPT on UDRE0addr interrupt
                                  
                                  .org URXC1addr
 000028 c0d0                      	RJMP DMX_INTERRUPT							// Jump to DMX_INTERRUPT on URXC1addr interrupt
                                  
                                  .org USI_OVFaddr
-000030 c105                      	RJMP PMX2_INTERRUPT							// Jump to PMX2_INTERRUPT on USI_OVFaddr interrupt
+000030 c106                      	RJMP PMX2_INTERRUPT							// Jump to PMX2_INTERRUPT on USI_OVFaddr interrupt
                                  
                                  
                                  //*****************************Init Controller******************************
@@ -1259,12 +1260,12 @@ AVRASM ver. 2.2.7  C:\Users\gabse\Documents\Projekte\DMX2PMX\FW_V2\DMX2PMX\main.
                                  	
 000090 e088                      	LDI TEMP,	1<<WDE							// Enable Watchdog Timer @ 16ms
 000091 bf80                      	OUT WDTCSR,	TEMP							// Enable Watchdog Timer @ 16ms
-000092 e080                      	LDI TEMP,	0x00							// Set PortA to input 
-000093 bb80                      	OUT DDRA,	TEMP							// Set PortA to input 
-000094 ef8f                      	LDI TEMP,	0xFF							// Enable PortA pullup
-000095 bb82                      	OUT PUEA,	TEMP							// Enable PortA pullup
-000096 9863                      	CBI DDRB,	PB3								// Set pin PB3 to input
-000097 9a73                      	SBI PUEB,	PB3								// Enable pin PB3 pullup
+000092 9863                      	CBI DDRB,	PB3								// Set pin PB3 to input
+000093 9a73                      	SBI PUEB,	PB3								// Enable pin PB3 pullup
+000094 e080                      	LDI TEMP,	0x00							// Set PortA to input 
+000095 bb80                      	OUT DDRA,	TEMP							// Set PortA to input 
+000096 ef8f                      	LDI TEMP,	0xFF							// Enable PortA pullup
+000097 bb82                      	OUT PUEA,	TEMP							// Enable PortA pullup
 000098 ef8f                      	SER TEMP									// Load TEMP with value for XOR
 000099 b00b                      	IN DMX_ADDRESS_L,	PINB					// Read DMX address bit 8 from DIP switch
 00009a 2608                      	EOR DMX_ADDRESS_L,	TEMP					// Invert register
@@ -1481,36 +1482,37 @@ AVRASM ver. 2.2.7  C:\Users\gabse\Documents\Projekte\DMX2PMX\FW_V2\DMX2PMX\main.
 00011f 1064                      		CPSE DMX_DATA,	DMX_BYTE_H				// Check startbit
 000120 cff4                      			RJMP SKIPNEXT							// Jump to SKIPNEXT if startbit is not 0
 000121 7f0d                      		CBR FLAGS,	1<<DRSB						// Clear DMX Read Start Byte flag
-000122 beaf                      		OUT SREG,	S_SREG						// Restore SREG
-000123 9518                      		RETI									// Exit interrupt
+000122 9453                      		INC DMX_BYTE_L							// Increment DMXBYTE L by 1
+000123 beaf                      		OUT SREG,	S_SREG						// Restore SREG
+000124 9518                      		RETI									// Exit interrupt
                                  		
                                  			
                                  //**************************PMX1 Output Interrupt***************************
                                  PMX1_INTERRUPT:
                                  
                                  		// Check if in address, data or page phase of PMX transfer
-000124 b6af                      		IN S_SREG,	SREG						// Save SREG
-000125 fd11                      		SBRC PMX_FLAGS,	AOD1					// Check if address flag is set 
-000126 c007                      			RJMP PMX1_DATA_SEND						// Jump to PMX1_DATA if flag is set
-000127 6012                      		SBR PMX_FLAGS,	1<<AOD1					// Set Address or Data Byte PMX1 flag
-000128 6820                      		SBR PMX1_ADDRESS, 1<<7					// Set address bit
-000129 fd12                      		SBRC PMX_FLAGS,	PAGE1					// Check if page flag is set 
-00012a ef29                      			LDI PMX1_ADDRESS,	249					// Send page command
-00012b bd20                      		OUT UDR0, PMX1_ADDRESS					// Output PMX1_ADDRESS
-00012c beaf                      		OUT SREG, S_SREG						// Restore SREG
-00012d 9518                      		RETI									// Exit interrupt
+000125 b6af                      		IN S_SREG,	SREG						// Save SREG
+000126 fd11                      		SBRC PMX_FLAGS,	AOD1					// Check if address flag is set 
+000127 c007                      			RJMP PMX1_DATA_SEND						// Jump to PMX1_DATA if flag is set
+000128 6012                      		SBR PMX_FLAGS,	1<<AOD1					// Set Address or Data Byte PMX1 flag
+000129 6820                      		SBR PMX1_ADDRESS, 1<<7					// Set address bit
+00012a fd12                      		SBRC PMX_FLAGS,	PAGE1					// Check if page flag is set 
+00012b ef29                      			LDI PMX1_ADDRESS,	249					// Send page command
+00012c bd20                      		OUT UDR0, PMX1_ADDRESS					// Output PMX1_ADDRESS
+00012d beaf                      		OUT SREG, S_SREG						// Restore SREG
+00012e 9518                      		RETI									// Exit interrupt
                                  
                                  	PMX1_DATA_SEND:
                                  		// Send PMX Data. In 8 bit mode databit 0 is checked and a additional databit is transmitted in the next interrupt if bit was HIGH
                                  	.if PMXMODE == 7						// If 7 bit mode active
-00012e 2dc7                      		MOV YL,	PMX1_DATA						// Copy RAM address into address pointer
-00012f 8078                      		LD PMX1_DATA,	Y						// Get data from RAM
-000130 fd12                      		SBRC PMX_FLAGS,	PAGE1					// Check if PMX1 page flag is set 
-000131 2477                      			CLR PMX1_DATA							// Send Page 0
-000132 7f18                      		CBR PMX_FLAGS,	1<<AOD1 | 1<<UPX1 |	1<<PAGE1// Clear Address or Data Byte PMX1, Update PMX1 and Send Page PMX1 flag
-000133 bc70                      		OUT UDR0,	PMX1_DATA					// Output PMX1_DATA
-000134 beaf                      		OUT SREG,	S_SREG						// Restore SREG
-000135 9518                      		RETI									// Exit interrupt
+00012f 2dc7                      		MOV YL,	PMX1_DATA						// Copy RAM address into address pointer
+000130 8078                      		LD PMX1_DATA,	Y						// Get data from RAM
+000131 fd12                      		SBRC PMX_FLAGS,	PAGE1					// Check if PMX1 page flag is set 
+000132 2477                      			CLR PMX1_DATA							// Send Page 0
+000133 7f18                      		CBR PMX_FLAGS,	1<<AOD1 | 1<<UPX1 |	1<<PAGE1// Clear Address or Data Byte PMX1, Update PMX1 and Send Page PMX1 flag
+000134 bc70                      		OUT UDR0,	PMX1_DATA					// Output PMX1_DATA
+000135 beaf                      		OUT SREG,	S_SREG						// Restore SREG
+000136 9518                      		RETI									// Exit interrupt
                                  
                                  	.else									// If 8 bit mode active
                                  	.endif
@@ -1520,31 +1522,31 @@ AVRASM ver. 2.2.7  C:\Users\gabse\Documents\Projekte\DMX2PMX\FW_V2\DMX2PMX\main.
                                  PMX2_INTERRUPT:
                                  
                                  		// Check if in first or second part of UART transfer
-000136 fd03                      		SBRC FLAGS,	USIS						// Check USI State
-000137 c02a                      			RJMP USISEND2							// Jump to USISEND2 if flag is set
+000137 fd03                      		SBRC FLAGS,	USIS						// Check USI State
+000138 c02a                      			RJMP USISEND2							// Jump to USISEND2 if flag is set
                                  
                                  		// Check if in address, data or page phase of PMX transfer
-000138 b6af                      		IN S_SREG,	SREG						// Save SREG
-000139 fd15                      		SBRC PMX_FLAGS,	AOD2					// Check if address flag is set 
-00013a c007                      			RJMP PMX2_DATA_SEND						// Jump to PMX2_DATA if flag is set
-00013b 6210                      		SBR PMX_FLAGS,	1<<AOD2					// Set Address or Data Byte PMX2 flag
-00013c 6830                      		SBR PMX2_ADDRESS,	1<<7				// Set address bit
-00013d 5138                      		SUBI PMX2_ADDRESS,	NUM_CH				// Subtract channel offset
-00013e fd16                      		SBRC PMX_FLAGS,	PAGE2					// Check if page flag is set 
-00013f ef39                      			LDI PMX2_ADDRESS,	249					// Send page command
-000140 2f73                      		MOV TEMP_I,	PMX2_ADDRESS				// Copy data to TEMP_I for output
-000141 c007                      		RJMP USISEND1							// Jump to USISEND1
+000139 b6af                      		IN S_SREG,	SREG						// Save SREG
+00013a fd15                      		SBRC PMX_FLAGS,	AOD2					// Check if address flag is set 
+00013b c007                      			RJMP PMX2_DATA_SEND						// Jump to PMX2_DATA if flag is set
+00013c 6210                      		SBR PMX_FLAGS,	1<<AOD2					// Set Address or Data Byte PMX2 flag
+00013d 6830                      		SBR PMX2_ADDRESS,	1<<7				// Set address bit
+00013e 5138                      		SUBI PMX2_ADDRESS,	NUM_CH				// Subtract channel offset
+00013f fd16                      		SBRC PMX_FLAGS,	PAGE2					// Check if page flag is set 
+000140 ef39                      			LDI PMX2_ADDRESS,	249					// Send page command
+000141 2f73                      		MOV TEMP_I,	PMX2_ADDRESS				// Copy data to TEMP_I for output
+000142 c007                      		RJMP USISEND1							// Jump to USISEND1
                                  
                                  	PMX2_DATA_SEND:
                                  		// Send PMX Data. In 8 bit mode databit 0 is checked and a additional databit is transmitted in the next interrupt if bit was HIGH
                                  	.if PMXMODE == 7						// If 7 bit mode active
-000142 2dc8                      		MOV YL,	PMX2_DATA						// Copy RAM address into address pointer
-000143 8088                      		LD PMX2_DATA,	Y						// Get data from RAM
-000144 fd16                      		SBRC PMX_FLAGS,	PAGE2					// Check if PMX2 page flag is set 
-000145 2488                      			CLR PMX2_DATA							// Send Page 0
-000146 781f                      		CBR PMX_FLAGS,	1<<AOD2 | 1<<UPX2 |	1<<PAGE2// Clear Address or Data Byte PMX2, Update PMX2 and Send Page PMX2 flag
-000147 2d78                      		MOV TEMP_I, 	PMX2_DATA				// Copy data to TEMP_I for output
-000148 c000                      		RJMP USISEND1							// Jump to USISEND1
+000143 2dc8                      		MOV YL,	PMX2_DATA						// Copy RAM address into address pointer
+000144 8088                      		LD PMX2_DATA,	Y						// Get data from RAM
+000145 fd16                      		SBRC PMX_FLAGS,	PAGE2					// Check if PMX2 page flag is set 
+000146 2488                      			CLR PMX2_DATA							// Send Page 0
+000147 781f                      		CBR PMX_FLAGS,	1<<AOD2 | 1<<UPX2 |	1<<PAGE2// Clear Address or Data Byte PMX2, Update PMX2 and Send Page PMX2 flag
+000148 2d78                      		MOV TEMP_I, 	PMX2_DATA				// Copy data to TEMP_I for output
+000149 c000                      		RJMP USISEND1							// Jump to USISEND1
                                  
                                  
                                  	.else									// If 8 bit mode active
@@ -1553,43 +1555,43 @@ AVRASM ver. 2.2.7  C:\Users\gabse\Documents\Projekte\DMX2PMX\FW_V2\DMX2PMX\main.
                                  
                                  	USISEND1:
                                  		// Load the startbit, add databits 0-5 in flipped bitorder and output it to the USI. Prepare the stopbit and databit 5-7 in flipped bit order. Set the USI to output 6 bits
-000149 2799                      		CLR USI_DAT									// Clear USI_DAT
-00014a 6008                      		SBR FLAGS,	1<<USIS							// Set USI sate flag
-00014b fb70                      		BST TEMP_I,	0								// Copy TEMP_I bit 0 to T
-00014c f996                      		BLD USI_DAT,	6							// Copy T to USI_DAT bit 6
-00014d fb71                      		BST TEMP_I,	1								// Copy TEMP_I bit 1 to T
-00014e f995                      		BLD USI_DAT,	5							// Copy T to USI_DAT bit 5
-00014f fb72                      		BST TEMP_I,	2								// Copy TEMP_I bit 2 to T
-000150 f994                      		BLD USI_DAT,	4							// Copy T to USI_DAT bit 4
-000151 fb73                      		BST TEMP_I,	3								// Copy TEMP_I bit 3 to T
-000152 f993                      		BLD USI_DAT,	3							// Copy T to USI_DAT bit 3
-000153 fb74                      		BST TEMP_I,	4								// Copy TEMP_I bit 4 to T
-000154 f992                      		BLD USI_DAT,	2							// Copy T to USI_DAT bit 2
-000155 fb75                      		BST TEMP_I,	5								// Copy TEMP_I bit 5 to T
-000156 f991                      		BLD USI_DAT,	1							// Copy T to USI_DAT bit 1
-000157 bd9c                      		OUT USIDR,	USI_DAT							// Output USI_DAT to USIDR
-000158 e494                      		LDI USI_DAT,	1<<USIOIF | 4				// Reset USI Overflow Flag & Set USI Counter to 4
-000159 bd9b                      		OUT USISR,	USI_DAT							// Reset USI Overflow Flag & Set USI Counter to 4
-00015a e190                      		LDI USI_DAT,	0x10						// Load Stopbit into USI_DAT
-00015b f997                      		BLD USI_DAT,	7							// Copy T to USI_DAT bit 7
-00015c fb76                      		BST TEMP_I,	6								// opy TEMP_I bit 6 to T
-00015d f996                      		BLD USI_DAT,	6							// Copy T to USI_DAT bit 6
-00015e fb77                      		BST TEMP_I,	7								// Copy TEMP_I bit 7 to T
-00015f f995                      		BLD USI_DAT,	5							// Copy T to USI_DAT bit 5
-000160 beaf                      		OUT SREG,	S_SREG							// Restore SREG
-000161 9518                      		RETI										// Exit interrupt	
+00014a 2799                      		CLR USI_DAT									// Clear USI_DAT
+00014b 6008                      		SBR FLAGS,	1<<USIS							// Set USI sate flag
+00014c fb70                      		BST TEMP_I,	0								// Copy TEMP_I bit 0 to T
+00014d f996                      		BLD USI_DAT,	6							// Copy T to USI_DAT bit 6
+00014e fb71                      		BST TEMP_I,	1								// Copy TEMP_I bit 1 to T
+00014f f995                      		BLD USI_DAT,	5							// Copy T to USI_DAT bit 5
+000150 fb72                      		BST TEMP_I,	2								// Copy TEMP_I bit 2 to T
+000151 f994                      		BLD USI_DAT,	4							// Copy T to USI_DAT bit 4
+000152 fb73                      		BST TEMP_I,	3								// Copy TEMP_I bit 3 to T
+000153 f993                      		BLD USI_DAT,	3							// Copy T to USI_DAT bit 3
+000154 fb74                      		BST TEMP_I,	4								// Copy TEMP_I bit 4 to T
+000155 f992                      		BLD USI_DAT,	2							// Copy T to USI_DAT bit 2
+000156 fb75                      		BST TEMP_I,	5								// Copy TEMP_I bit 5 to T
+000157 f991                      		BLD USI_DAT,	1							// Copy T to USI_DAT bit 1
+000158 bd9c                      		OUT USIDR,	USI_DAT							// Output USI_DAT to USIDR
+000159 e494                      		LDI USI_DAT,	1<<USIOIF | 4				// Reset USI Overflow Flag & Set USI Counter to 4
+00015a bd9b                      		OUT USISR,	USI_DAT							// Reset USI Overflow Flag & Set USI Counter to 4
+00015b e190                      		LDI USI_DAT,	0x10						// Load Stopbit into USI_DAT
+00015c f997                      		BLD USI_DAT,	7							// Copy T to USI_DAT bit 7
+00015d fb76                      		BST TEMP_I,	6								// opy TEMP_I bit 6 to T
+00015e f996                      		BLD USI_DAT,	6							// Copy T to USI_DAT bit 6
+00015f fb77                      		BST TEMP_I,	7								// Copy TEMP_I bit 7 to T
+000160 f995                      		BLD USI_DAT,	5							// Copy T to USI_DAT bit 5
+000161 beaf                      		OUT SREG,	S_SREG							// Restore SREG
+000162 9518                      		RETI										// Exit interrupt	
                                  	
                                  	
                                  	USISEND2:
                                  		// Output prepared data to the USI. Set the USI to output 6 bits if USI interrupt was on a rising clock edge. Add a extra half bit otherwise to correct the clockpase.
-000162 7f07                      		CBR FLAGS,	1<<USIS							// Reset USI state flag
-000163 bd9c                      		OUT USIDR,	USI_DAT							// Output USI_DAT to USIDR
-000164 e498                      		LDI USI_DAT,	1<<USIOIF | 8				// Reset USI Overflow Flag & Set USI Counter to 8
-000165 9b39                      		SBIS PINC,	PC1								// Check clock phase
-000166 e499                      			LDI USI_DAT,	1<<USIOIF | 9				// Correct clock phase (Interrupt on rising edge, output on falling edge)
-000167 bd9b                      		OUT USISR,	USI_DAT							// Reset USI Overflow Flag & Set USI Counter to 8/9
-000168 beaf                      		OUT SREG,	S_SREG							// Restore SREG
-000169 9518                      		RETI										// Exit interrupt
+000163 7f07                      		CBR FLAGS,	1<<USIS							// Reset USI state flag
+000164 bd9c                      		OUT USIDR,	USI_DAT							// Output USI_DAT to USIDR
+000165 e498                      		LDI USI_DAT,	1<<USIOIF | 8				// Reset USI Overflow Flag & Set USI Counter to 8
+000166 9b39                      		SBIS PINC,	PC1								// Check clock phase
+000167 e499                      			LDI USI_DAT,	1<<USIOIF | 9				// Correct clock phase (Interrupt on rising edge, output on falling edge)
+000168 bd9b                      		OUT USISR,	USI_DAT							// Reset USI Overflow Flag & Set USI Counter to 8/9
+000169 beaf                      		OUT SREG,	S_SREG							// Restore SREG
+00016a 9518                      		RETI										// Exit interrupt
                                  
                                  
                                  //******************************Programm End *******************************
@@ -1599,18 +1601,18 @@ AVRASM ver. 2.2.7  C:\Users\gabse\Documents\Projekte\DMX2PMX\FW_V2\DMX2PMX\main.
 001ff7 3258
 001ff8 4d50
 001ff9 2058
-001ffa 3156
+001ffa 3256
 001ffb 6220
 001ffc 2079
 001ffd 6147
 001ffe 7362
-001fff 6527                      .db "DMX2PMX V1 by Gabs'e"
+001fff 6527                      .db "DMX2PMX V2 by Gabs'e"
                                  
                                  .if NUM_CH > 120 | NUM_CH < 1
                                  .endif
                                  
                                  .if PMXMODE == 7
-C:\Users\gabse\Documents\Projekte\DMX2PMX\FW_V2\DMX2PMX\main.asm(621): Assembling in 7 Bit Mode.
+C:\Users\gabse\Documents\Projekte\DMX2PMX\FW_V2\DMX2PMX\main.asm(623): Assembling in 7 Bit Mode.
                                  .message "Assembling in 7 Bit Mode."
                                  
                                  .elif PMXMODE == 8
@@ -1636,7 +1638,7 @@ counted separately from r26..r31 here.
 
 "ATtiny1634" register use summary:
 x  :   6 y  :   2 z  :   2 r0 :   8 r1 :   4 r2 :   7 r3 :   3 r4 :   6 
-r5 :   4 r6 :   5 r7 :   7 r8 :   7 r9 :   1 r10:  14 r11:   3 r12:   4 
+r5 :   5 r6 :   5 r7 :   7 r8 :   7 r9 :   1 r10:  14 r11:   3 r12:   4 
 r13:   1 r14:   1 r15:   1 r16:  12 r17:  19 r18:   9 r19:  10 r20:   6 
 r21:   6 r22:   7 r23:  14 r24:  59 r25:  19 r26:  15 r27:   6 r28:   3 
 r29:   2 r30:   5 r31:   5 
@@ -1652,7 +1654,7 @@ brvs  :   0 bset  :   0 bst   :  10 call  :   0 cbi   :   1 cbr   :   6
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :  42 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   3 cpc   :   1 
 cpi   :   9 cpse  :   3 dec   :   2 eor   :   4 icall :   0 ijmp  :   0 
-in    :   8 inc   :  10 jmp   :   0 ld    :   6 ldd   :   0 ldi   :  36 
+in    :   8 inc   :  11 jmp   :   0 ld    :   6 ldd   :   0 ldi   :  36 
 lds   :   2 lpm   :   0 lsl   :   0 lsr   :   1 mov   :  17 movw  :   0 
 neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  28 pop   :   0 
 push  :   0 rcall :   0 ret   :   0 reti  :   9 rjmp  :  25 rol   :   0 
@@ -1666,7 +1668,7 @@ Instructions used: 35 out of 107 (32.7%)
 "ATtiny1634" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x004000    636     20    656   16384   4.0%
+[.cseg] 0x000000 0x004000    638     20    658   16384   4.0%
 [.dseg] 0x000100 0x000100      0      0      0    1024   0.0%
 [.eseg] 0x000000 0x000000      0      0      0     256   0.0%
 
